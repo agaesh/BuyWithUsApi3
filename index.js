@@ -1,7 +1,8 @@
-const express = require('express');
-const db = require('./services/auth-services/src/config/db'); // Assuming db.js is in the same directory
+const express =  require('express');
+const db = require('./db'); // Assuming db.js is in the same directory
 const app = express();
 const PORT = 3000;
+const userRoute = require('./routes/userRoutes'); // Assuming userRoutes.js is in the same directory
 
 // Middleware to parse JSON
 app.use(express.json());
@@ -11,6 +12,8 @@ app.use(express.json());
 app.get('/', (req, res) => {
     res.send('Welcome to the BuyWithUs API!');
 });
+
+app.use('/user', userRoute);
 
 // Start the server
 app.listen(PORT, () => {
