@@ -6,7 +6,7 @@ const { body, validationResult } = require('express-validator');
 const router = express.Router();
 // Route to get all users
 router.post(
-    '/',
+    '/signup',
     [
         body('email').isEmail().withMessage('Invalid email address'),
         body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters long'),
@@ -53,6 +53,7 @@ router.delete("/:id", (req, res) => {
     // Logic for deleting a user by ID
     userController.deleteUser(req, res);
 });
+
 
 
 module.exports = router;
