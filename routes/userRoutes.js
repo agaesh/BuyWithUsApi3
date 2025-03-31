@@ -33,7 +33,7 @@ router.post("/signin", (req, res) => {
 });
 router.post("/bank-details", (req, res) => {
     // Logic for adding bank details
-    userController.addBankDetails(req, res);
+    userController.addBankingDetails(req, res);
 });
 
 router.get("/", (req, res) => {

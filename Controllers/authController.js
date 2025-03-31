@@ -113,7 +113,7 @@ class AuthController {
             res.status(500).json({ success: false, message: 'Internal Server Error', error: error.message });
         }
     }
-    async updateBakingDetails(req, res) {
+    async addBankingDetails(req, res) {
         try {
             const id = req.params.id;
             const { account_number, account_name, bank_name, routing_number, swift_code, currency, account_type } = req.body;
