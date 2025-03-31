@@ -32,28 +32,5 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Users'
   });
-
-  User.validate = async function (data, res) {
-      const { firstname, lastname, email, password } = data;
-      
-      if (!firstname || !lastname || !email || !password) {
-          return res.status(400).json({ success: false, message: 'All fields are required' });
-      }
-
-      // Validate Email Format
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-          return res.status(400).json({ success: false, message: 'Invalid email format' });
-      }
-
-      // Check if Email is Already in Use
-      const existingUser = await User.findOne({ where: { email }, attributes: ['id', 'firstname', 'lastname', 'email', 'password'] });
-      if (existingUser) {
-          return res.status(400).json({ success: false, message: 'Email already exists' });
-      }
-
-      return { success: true, message: 'Validation passed' };
-  }
-
   return User;
 }; 
