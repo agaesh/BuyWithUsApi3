@@ -1,6 +1,7 @@
 const { Users } = require('../models'); // Importing the User model correctly
 const argon2 = require('argon2'); // Import Argon2 for password hashing
 const jwt = require('jsonwebtoken'); // Import JWT for token generation
+require('dotenv').config(); // Load environment variables from .env file
 
 class AuthController {
     // Create a new user
@@ -78,6 +79,54 @@ class AuthController {
             res.status(500).json({ success: false, message: 'Internal Server Error', error: error.message });
         }
     }
+    async getAllUsers(req, res) {
+        try {
+            const users = await Users.findAll({});
+            if (!users) {
+                return res.status(404).json({ success: false, message: 'No users found' });
+            }
+            res.status(200).json({
+                success: true,
+                message: 'Users retrieved successfully',
+                data: users,
+            })
+        }
+        catch (error) {
+            console.error("Error retrieving users:", error);
+            res.status(500).json({ success: false, message: 'Internal Server Error', error: error.message });
+        }
+    }
+    async getUserById(req, res) {
+        try {
+            const id = req.params.id;
+            const user = await Users.findByPk(id);
+            if (!user) {
+                return res.status(404).json({ success: false, message: 'User not found' });
+            }
+            return res.status(200).json({
+                success: true,
+                message: 'User retrieved successfully',
+                data: user,
+            });
+        } catch (error) {
+            console.error("Error retrieving user:", error);
+            res.status(500).json({ success: false, message: 'Internal Server Error', error: error.message });
+        }
+    }
+    async updateBakingDetails(req, res) {
+        try {
+            const id = req.params.id;
+            const { account_number, account_name, bank_name, routing_number, swift_code, currency, account_type } = req.body;
+            const user = await Users.findByPk(id);
+            if (!user) {
+                return res.status(404).json({ success: false, message: 'User not found'
+                });
+            }
+        }
+    catch (error) {
+        console.error("Error updating user baking details:", error);
+        res.status(500).json({ success: false, message: 'Internal Server Error', error: error.message });
+    }
 }
-
+}
 module.exports = new AuthController;
