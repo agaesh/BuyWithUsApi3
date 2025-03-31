@@ -26,16 +26,33 @@ router.post(
     }
 );
 
-// // Route to get a single user by ID
-// router.get('/:id', userController.getUserById);
+router.post("/signin", (req, res) => {
+    // Logic for user sign-in
+    res.send("User sign-in route");
+    userController.SignIn(req, res);
+});
+router.post("/bank-details", (req, res) => {
+    // Logic for adding bank details
+    userController.addBankDetails(req, res);
+});
 
-// // Route to create a new user
-// router.post('/', userController.createUser);
+router.get("/", (req, res) => {
+    // Logic for getting all users
+    userController.getAllUsers(req, res);
+});
 
-// // Route to update a user by ID
-// router.put('/:id', userController.updateUser);
+router.get("/:id", (req, res) => {
+    // Logic for getting a user by ID
+    userController.getUserById(req, res);
+});
+router.put("/:id", (req, res) => {
+    // Logic for updating a user by ID
+    userController.updateUser(req, res);
+});
+router.delete("/:id", (req, res) => {
+    // Logic for deleting a user by ID
+    userController.deleteUser(req, res);
+});
 
-// // Route to delete a user by ID
-// router.delete('/:id', userController.deleteUser);
 
 module.exports = router;
