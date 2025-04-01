@@ -28,15 +28,15 @@ export default {
         allowNull: false,
       },
       discount_amt: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.DECIMAL(10, 2),
         allowNull: false,
       },
       discount_rate:{
-        type: Sequelize.FLOAT,
+        type: Sequelize.DECIMAL(10,2),
         allowNull: false,
       },
       tax_rate: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.DECIMAL(10,2),
         allowNull: false,
       },
       tax_type: {
