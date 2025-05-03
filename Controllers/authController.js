@@ -1,6 +1,8 @@
-const { Users } = require('../models'); // Importing the User model correctly
+
 const argon2 = require('argon2'); // Import Argon2 for password hashing
 const jwt = require('jsonwebtoken'); // Import JWT for token generation
+const { sequelize } = require('../models');
+const User = require("../models/user")(sequelize); // Importing the User model correctly
 require('dotenv').config(); // Load environment variables from .env file
 
 class AuthController {
@@ -11,7 +13,7 @@ class AuthController {
             // Hash Password Before Storing
             const hashedPassword = await argon2.hash(password, { type: argon2.argon2id });
             // Create a New User
-            const user = await Users.create({
+            const user = await User.create({
                 firstname,
                 lastname,
                 email,
@@ -81,7 +83,7 @@ class AuthController {
     }
     async getAllUsers(req, res) {
         try {
-            const users = await Users.findAll({});
+            const users = await User.findAll({});
             if (!users) {
                 return res.status(404).json({ success: false, message: 'No users found' });
             }
@@ -99,7 +101,7 @@ class AuthController {
     async getUserById(req, res) {
         try {
             const id = req.params.id;
-            const user = await Users.findByPk(id);
+            const user = await User.findByPk(id);
             if (!user) {
                 return res.status(404).json({ success: false, message: 'User not found' });
             }

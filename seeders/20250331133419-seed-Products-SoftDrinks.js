@@ -102,7 +102,7 @@ module.exports = {
         brand_code: '7up',
         brand_name: 'PepsiCo',
         createdAt: new Date(),
-        updatedAt: new Date(),
+        updatedAt: new Date()
       },
       {
         id: 6,
@@ -138,7 +138,7 @@ module.exports = {
         brand_code: 'dr-pepper',
         brand_name: 'Dr Pepper Snapple Group',
         createdAt: new Date(),
-        updatedAt: new Date(),
+        updatedAt: new Date()
       },
       {
         id: 8,
@@ -156,7 +156,7 @@ module.exports = {
         brand_code: 'barqs',
         brand_name: 'Coca-Cola',
         createdAt: new Date(),
-        updatedAt: new Date(),
+        updatedAt: new Date()
       },
       {
         id: 9,
