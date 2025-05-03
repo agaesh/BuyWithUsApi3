@@ -7,6 +7,7 @@
     background-color: rgb(46, 46, 82);
     color:white;
 }
+
 .profile{
     margin-bottom:4rem;
 }
@@ -17,6 +18,7 @@
     margin: 1rem 0;
     object-fit: cover;
 }
+
 nav ul{
     list-style: none;
     padding: 0;
@@ -42,3 +44,44 @@ a{
 .menubar ul li:hover{
     background-color: rgb(66, 66, 112);
 }
+
+@media screen and (min-width: 300px) and (max-width: 768px) {
+    .menubar {
+        width: 100%;               /* Ensures the menu bar takes up full width */
+        height: fit-content;             /* Height adjusts based on content */      /* Allows relative positioning */
+    }
+
+    .menubar ul {
+        display: flex;             /* Ensures ul is a flex container */
+        flex-direction: row;       /* Items are arranged in a row */
+        flex-wrap: wrap;           /* Allows wrapping when items exceed container */
+        justify-content: center;   /* Centers the list items */
+    }
+
+    .menubar ul li {
+        width: auto;               /* Li items take up their natural width */
+        margin: 5px;
+        :hover {
+            background-color: rgb(66, 66, 112); /* Hover effect for li items */
+        }         
+    }
+    
+    .main-content{
+        visibility: hidden;
+    }
+    .profile img{
+        width: 100px;
+        height: 100px;
+    }
+    .profile-info h4{
+        margin: 0.5rem 0;
+        font-size: 2.0rem;
+        color: white;
+    }
+    .profile-info p{
+        margin: 0.5rem 0;
+        font-size: 1.3rem;
+        color: white;
+    }
+    
+} 
